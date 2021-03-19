@@ -1,7 +1,9 @@
-//theadlist.h
+
 #ifndef _theadlist_h
 #define _theadlist_h
 #include "tlist.h"
+#include <iostream>
+using namespace std;
 template <class T>
 class THeadList : public TList<T> {
 protected:
@@ -11,9 +13,9 @@ public:
 	//constructor
 	THeadList() : TList<T>() {
 		pHead = new TLink<T>;
-		pStop = pHead;
+		TList<T>::pStop = pHead;
 		pHead->pNext = pHead;
-		pFirst = pHead;
+		TList<T>::pFirst = pHead;
 	}
 
 	//destructor
@@ -25,23 +27,25 @@ public:
 	//add first link
 	void InsFirst(T el) {
 		TList::InsFirst(el);
-		pHead->pNext = pFirst;
+		pHead->pNext = TList<T>::pFirst;
 	}
 
 	// add last link
 	void InsLast(T el) {
-		TList::InsLast(el);
+		//ÒÓÒÒÒ ÓÁÈÐÀÅÌ TList::!!!!!!!!
+		InsLast(el);
 	}
 
 	//add current link
 	void InsCurr(T el) {
-		TList::InsCurr(el);
+		//ÒÓÒÒÒ ÓÁÈÐÀÅÌ TList::!!!!!!!!
+		InsCurr(el);
 	}
 
 	// delete first link
 	void DelFirst() {
 		TList::DelFirst();
-		pHead->pNext = pFirst;
+		pHead->pNext = TList<T>::pFirst;
 	}
 };
 #endif

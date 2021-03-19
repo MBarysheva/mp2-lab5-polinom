@@ -1,7 +1,10 @@
-//tlist.h
+#include <iostream>
+#include "theadlist.h"
 #ifndef _tlist_h
 #define _tlist_h
+using namespace std;
 template <class T>
+
 struct TLink {
 	T val;
 	TLink<T> *pNext;

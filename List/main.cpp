@@ -1,4 +1,4 @@
-//The file that launches the main program
+
 #include <iostream>
 #include "tlist.h"
 #include "theadlist.h"
@@ -14,16 +14,16 @@ void main() {
 	int column = 2;
 	int** arr;
 
-	cout << "Введите размер многочлена" << endl;
+	cout << "Введите размер первого многочлена" << endl;
 	cin >> sizem;
 	arr = new int*[sizem];
 	for (int i = 0; i < sizem; i++)
 		arr[i] = new int[column];
 
 	for (int i = 0; i < sizem; i++) {
-		cout << "Введите " << i << " коэффициент" << endl;
+		cout << "Введите коэффициент" << endl;
 		cin >> arr[i][0];
-		cout << "Введите степени" << endl;
+		cout << "Введите степень" << endl;
 		cin >> arr[i][1];
 	}
 
@@ -34,16 +34,16 @@ void main() {
 	int sizem1;
 	int column1 = 2;
 	int** arr1;
-	cout << "Введите размер многочлена" << endl;
+	cout << "Введите размер второго многочлена" << endl;
 	cin >> sizem1;
 	arr1 = new int*[sizem1];
 	for (int i = 0; i < sizem1; i++)
 		arr1[i] = new int[column1];
 
 	for (int i = 0; i < sizem1; i++) {
-		cout << "Введите " << i << " коэффициент" << endl;
+		cout << "Введите коэффициент" << endl;
 		cin >> arr1[i][0];
-		cout << "Введите степени" << endl;
+		cout << "Введите степень" << endl;
 		cin >> arr1[i][1];
 	}
 
@@ -62,7 +62,7 @@ void main() {
 		cout << "Добавить в полином моном - 3" << endl;
 		cout << "Сложить два полинома - 4" << endl;
 		cout << "Вывести полиномы - 5" << endl;
-		cout << "Введите f" << endl;
+		cout << "Выход - 0" << endl;
 		cin >> f;
 		switch (f) {
 		case 1:
@@ -71,13 +71,27 @@ void main() {
 			cout << "Введите целую константу" << endl;
 			cin >> a;
 			if (c == 1) {
-				pol *= a;
-				cout << pol;
+				if (a == 0)
+				{
+					cout << "0" <<endl;
+				}
+				else
+				{
+					pol *= a;
+					cout << pol;
+				}
 			}
 			else
 			{
-				pol1 *= a;
-				cout << pol1;
+				if (a == 0)
+				{
+					cout << "0" << endl;
+				}
+				else
+				{
+					pol1 *= a;
+					cout << pol1;
+				}
 			}
 			break;
 		case 2: {

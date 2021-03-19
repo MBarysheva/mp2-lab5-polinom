@@ -1,8 +1,8 @@
-#pragma once
+
 #include <iostream>
 #include "tlist.h"
 #include "theadlist.h"
-
+using namespace std;
 struct TMonom {
 	double coeff;
 	int px, py, pz;

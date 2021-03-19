@@ -32,14 +32,12 @@ public:
 
 	// add last link
 	void InsLast(T el) {
-		//“”“““ ”¡»–¿≈Ã TList::!!!!!!!!
-		InsLast(el);
+		TList::InsLast(el);
 	}
 
 	//add current link
 	void InsCurr(T el) {
-		//“”“““ ”¡»–¿≈Ã TList::!!!!!!!!
-		InsCurr(el);
+		TList::InsCurr(el);
 	}
 
 	// delete first link

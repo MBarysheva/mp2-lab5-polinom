@@ -1,211 +1,154 @@
-#include "../List/tlist.h"
-#include "../List/theadlist.h"
-#include "../List/tpolinom.h"
+﻿#include "gtesst.h"
+#include <iostream>
+#include <locale.h>
 #include "gtest.h"
-TEST(TPolinomTest, can_create_monom) {
-	int arr[1][2];
-	arr[0][0] = 1;
-	arr[0][1] = 111;
-	ASSERT_NO_THROW(TMonom monom(arr));
-	TMonom monom(arr);
-	EXPECT_EQ(monom.coeff, 1);
-	EXPECT_EQ(monom.px, 1);
-	EXPECT_EQ(monom.py, 1);
-	EXPECT_EQ(monom.pz, 1);
+//
+//ТЕСТЫ ПО ЛИСТУ
+//
+TEST(TList, can_create_list)
+{
+	ASSERT_NO_THROW(TList<int> l);
 }
-TEST(TPolinomTest, can_create_polinom) {
-	int sizem = 2;
-	int column = 2;
-	int** arr;
-	arr = new int* [sizem];
-	for (int i = 0; i < sizem; i++)
-		arr[i] = new int[column];
-	arr[0][0] = 1;
-	arr[0][1] = 111;
-	arr[1][0] = 2;
-	arr[1][1] = 222;
-	ASSERT_NO_THROW(TPolinom pol(arr, sizem));
-	TPolinom pol(arr, sizem);
-	pol.Reset();
-	EXPECT_EQ(pol.GetMonom().coeff, 2);
-	EXPECT_EQ(pol.GetMonom().px, 2);
-	EXPECT_EQ(pol.GetMonom().py, 2);
-	EXPECT_EQ(pol.GetMonom().pz, 2);
-	pol.GoNext();
-	EXPECT_EQ(pol.GetMonom().coeff, 1);
-	EXPECT_EQ(pol.GetMonom().px, 1);
-	EXPECT_EQ(pol.GetMonom().py, 1);
-	EXPECT_EQ(pol.GetMonom().pz, 1);
+
+TEST(TList, can_copy_list)
+{
+	TList<int>l;
+	l.InsFirst(5);
+	ASSERT_NO_THROW(TList<int> copy(l));
 }
-TEST(TPolinomTest, can_assign_one_polimonial_to_another) {
-	int sizem = 2;
-	int column = 2;
-	int** arr;
-	arr = new int* [sizem];
-	for (int i = 0; i < sizem; i++)
-		arr[i] = new int[column];
-	arr[0][0] = 1;
-	arr[0][1] = 111;
-	arr[1][0] = 2;
-	arr[1][1] = 222;
-	TPolinom pol(arr, sizem);
-	int sizem1 = 2;
-	int column1 = 2;
-	int** arr1;
-	arr1 = new int* [sizem1];
-	for (int i = 0; i < sizem1; i++)
-		arr1[i] = new int[column1];
-	arr1[0][0] = 3;
-	arr1[0][1] = 333;
-	arr1[1][0] = 4;
-	arr1[1][1] = 444;
-	TPolinom pol1(arr1, sizem1);
-	ASSERT_NO_THROW(pol = pol1);
-	pol.Reset();
-	EXPECT_EQ(pol.GetMonom().coeff, 4);
-	EXPECT_EQ(pol.GetMonom().px, 4);
-	EXPECT_EQ(pol.GetMonom().py, 4);
-	EXPECT_EQ(pol.GetMonom().pz, 4);
-	pol.GoNext();
-	EXPECT_EQ(pol.GetMonom().coeff, 3);
-	EXPECT_EQ(pol.GetMonom().px, 3);
-	EXPECT_EQ(pol.GetMonom().py, 3);
-	EXPECT_EQ(pol.GetMonom().pz, 3);
+
+TEST(TList, can_add_an_elem_to_the_start_of_list)
+{
+	TList<int> l;
+	ASSERT_NO_THROW(l.InsFirst(2));
 }
-TEST(TPolinomTest, can_add_monom_to_polinom) {
-	int sizem = 2;
-	int column = 2;
-	int** arr;
-	arr = new int* [sizem];
-	for (int i = 0; i < sizem; i++)
-		arr[i] = new int[column];
-	arr[0][0] = 1;
-	arr[0][1] = 111;
-	arr[1][0] = 2;
-	arr[1][1] = 222;
-	TPolinom pol(arr, sizem);
-	int arrm[1][2];
-	arrm[0][0] = 3;
-	arrm[0][1] = 333;
-	TMonom monom(arrm);
-	ASSERT_NO_THROW(pol.InsMonom(monom));
-	//pol.InsMonom(monom);
-	pol.Reset();
-	EXPECT_EQ(pol.GetMonom().coeff, 3);
-	EXPECT_EQ(pol.GetMonom().px, 3);
-	EXPECT_EQ(pol.GetMonom().py, 3);
-	EXPECT_EQ(pol.GetMonom().pz, 3);
-	pol.GoNext();
-	EXPECT_EQ(pol.GetMonom().coeff, 2);
-	EXPECT_EQ(pol.GetMonom().px, 2);
-	EXPECT_EQ(pol.GetMonom().py, 2);
-	EXPECT_EQ(pol.GetMonom().pz, 2);
-	pol.GoNext();
-	EXPECT_EQ(pol.GetMonom().coeff, 1);
-	EXPECT_EQ(pol.GetMonom().px, 1);
-	EXPECT_EQ(pol.GetMonom().py, 1);
-	EXPECT_EQ(pol.GetMonom().pz, 1);
+
+TEST(TList, can_add_an_elem_to_the_end_of_list)
+{
+	TList<int> l;
+	ASSERT_NO_THROW(l.InsLast(3));
 }
-TEST(TPolinomTest, can_multiply_the_polinomial_by_a_constant) {
-	int sizem = 2;
-	int column = 2;
-	int** arr;
-	arr = new int* [sizem];
-	for (int i = 0; i < sizem; i++)
-		arr[i] = new int[column];
-	arr[0][0] = 1;
-	arr[0][1] = 111;
-	arr[1][0] = 2;
-	arr[1][1] = 222;
-	TPolinom pol(arr, sizem);
-	int a = 3;
-	ASSERT_NO_THROW(pol *= a);
-	pol.Reset();
-	EXPECT_EQ(pol.GetMonom().coeff, 6);
-	EXPECT_EQ(pol.GetMonom().px, 2);
-	EXPECT_EQ(pol.GetMonom().py, 2);
-	EXPECT_EQ(pol.GetMonom().pz, 2);
-	pol.GoNext();
-	EXPECT_EQ(pol.GetMonom().coeff, 3);
-	EXPECT_EQ(pol.GetMonom().px, 1);
-	EXPECT_EQ(pol.GetMonom().py, 1);
-	EXPECT_EQ(pol.GetMonom().pz, 1);
+
+TEST(TList, can_delete_a_first_elem_of_empty_list)
+{
+	TList<int> l;
+	l.InsFirst(5);
+	ASSERT_NO_THROW(l.DelFirst());
 }
-TEST(TPolinomTest, can_multiply_the_polinomial_by_a_monomial) {
-	int sizem = 2;
-	int column = 2;
-	int** arr;
-	arr = new int* [sizem];
-	for (int i = 0; i < sizem; i++)
-		arr[i] = new int[column];
-	arr[0][0] = 1;
-	arr[0][1] = 111;
-	arr[1][0] = 2;
-	arr[1][1] = 222;
-	TPolinom pol(arr, sizem);
-	int arrm[1][2];
-	arrm[0][0] = 3;
-	arrm[0][1] = 333;
-	TMonom monom(arrm);
-	ASSERT_NO_THROW(pol *= monom);
-	pol.Reset();
-	EXPECT_EQ(pol.GetMonom().coeff, 6);
-	EXPECT_EQ(pol.GetMonom().px, 5);
-	EXPECT_EQ(pol.GetMonom().py, 5);
-	EXPECT_EQ(pol.GetMonom().pz, 5);
-	pol.GoNext();
-	EXPECT_EQ(pol.GetMonom().coeff, 3);
-	EXPECT_EQ(pol.GetMonom().px, 4);
-	EXPECT_EQ(pol.GetMonom().py, 4);
-	EXPECT_EQ(pol.GetMonom().pz, 4);
+
+TEST(TList, cant_delete_an_elem_from_an_empty_list)
+{
+	TList<int> l;
+	l.InsLast(5);
+	l.DelFirst();
+	ASSERT_ANY_THROW(l.DelFirst());
 }
-TEST(TPolinomTest, can_add_two_polinomials) {
-	int sizem = 2;
-	int column = 2;
-	int** arr;
-	arr = new int* [sizem];
-	for (int i = 0; i < sizem; i++)
-		arr[i] = new int[column];
-	arr[0][0] = 1;
-	arr[0][1] = 111;
-	arr[1][0] = 2;
-	arr[1][1] = 222;
-	TPolinom pol(arr, sizem);
-	int sizem1 = 2;
-	int column1 = 2;
-	int** arr1;
-	arr1 = new int* [sizem1];
-	for (int i = 0; i < sizem1; i++)
-		arr1[i] = new int[column1];
-	arr1[0][0] = -2;
-	arr1[0][1] = 222;
-	arr1[1][0] = 4;
-	arr1[1][1] = 444;
-	TPolinom pol1(arr1, sizem1);
-	TPolinom res;
-	EXPECT_EQ(res, pol + pol1);
-	res.Reset();
-	EXPECT_EQ(res.GetMonom().coeff, 4);
-	EXPECT_EQ(res.GetMonom().px, 4);
-	EXPECT_EQ(res.GetMonom().py, 4);
-	EXPECT_EQ(res.GetMonom().pz, 4);
-	res.GoNext();
-	EXPECT_EQ(res.GetMonom().coeff, 1);
-	EXPECT_EQ(res.GetMonom().px, 1);
-	EXPECT_EQ(res.GetMonom().py, 1);
-	EXPECT_EQ(res.GetMonom().pz, 1);
+
+
+
+
+///
+///ТЕСТЫ МОНОМ
+/// 
+
+TEST(TMonom, can_create_monom)
+{
+	ASSERT_NO_THROW(TMonom m);
 }
-TEST(TPolinomTest, can_output_polinomials) {
-	int sizem = 2;
-	int column = 2;
-	int** arr;
-	arr = new int* [sizem];
-	for (int i = 0; i < sizem; i++)
-		arr[i] = new int[column];
-	arr[0][0] = 1;
-	arr[0][1] = 111;
-	arr[1][0] = 2;
-	arr[1][1] = 222;
-	TPolinom pol(arr, sizem);
-	ASSERT_NO_THROW(std::cout << pol);
+
+TEST(TMonom, can_compare_the_monoms)
+{
+	TMonom m1(1, 1, 1, 1), m2(1, 2, 1, 1);
+	EXPECT_EQ(true, m1 < m2);
+	EXPECT_EQ(true, m2 > m1);
+	m2.y = 1;
+	EXPECT_EQ(true, m1 == m2);
 }
+
+TEST(TMonom, can_multiply_monoms)
+{
+	TMonom m1(1, 2, 3, 2), m2(1, 2, 2, 1);
+	m1 = m1 * m2;
+	ASSERT_NO_THROW(m1.x = 1, m1.y = 4, m1.z = 6 , m1.coeff = 2);
+}
+
+TEST(TMonom, can_multiply_monom_and_number)
+{
+	TMonom m(1, 2, 2, 1);
+	int i = 5;
+	m = m * i;
+	ASSERT_NO_THROW(m.x = 5, m.y = 10, m.z = 10,  m.coeff = 5);
+}
+/// 
+/// ПОЛИНОМ
+/// 
+
+TEST(TPolinom, can_create_polinom)
+{
+	ASSERT_NO_THROW(TPolinom l);
+}
+
+TEST(TPolinom, can_copy_polinom)
+{
+	TPolinom l;
+	TMonom m(2, 3, 1, 1);
+	l.InsMonom(m);
+	ASSERT_NO_THROW(TPolinom p(l));
+}
+
+TEST(TPolinom, can_insert_monom)
+{
+	TPolinom p;
+	TMonom m;
+	ASSERT_NO_THROW(p.InsMonom(m));
+}
+
+TEST(TPolinom, can_compare_empty_polinom)
+{
+	TPolinom p1, p2, p3;
+	ASSERT_NO_THROW(p1 = p2 = p3);
+}
+
+TEST(TPolinom, can_multiply_a_polinom_by_a_number)
+{
+	TPolinom p, res;
+	TMonom m;
+	int i = 6;
+	p.InsMonom(m);
+	ASSERT_NO_THROW(res = p * i);
+}
+
+TEST(TPolinom, is_polinom_can_become_empty)
+{
+	TPolinom p, res;
+	TMonom m;
+	p.InsMonom(m);
+	res.InsMonom(m);
+	res = p * 0;
+	EXPECT_EQ(0, res.Get_Size());
+}
+
+TEST(TPolinom, can_multiply_a_polinom_by_a_monom)
+{
+	TPolinom p, res;
+	TMonom m1(1, 0, 2, 1);
+	ASSERT_NO_THROW(res = p * m1);
+}
+
+TEST(TPolinom, can_add_up_an_emty_polinom_by_a_no_empty_polinom)
+{
+	TPolinom p1, p2, res;
+	TMonom m;
+	p2.InsMonom(m);
+	ASSERT_NO_THROW(p1 += p2);
+}
+
+TEST(TPolinom, can_add_polinoms)
+{
+	TPolinom p1, p2;
+	TMonom m1(1, 2, 2, 1), m2(1, 2, 3, 6);
+	p1.InsMonom(m1);
+	p2.InsMonom(m2);
+	ASSERT_NO_THROW(p1 += p2);
+}
+

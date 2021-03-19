@@ -139,7 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="gtest-all.cc" />
+    <ClCompile Include="gtest.cpp" />
     <ClCompile Include="test_polinom.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="gtesst.h" />
+    <ClInclude Include="gtest.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

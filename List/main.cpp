@@ -3,7 +3,7 @@
 #include "tlist.h"
 #include "theadlist.h"
 #include "tpolinom.h"
-
+#include <locale.h>
 using namespace std;
 
 void main() {
@@ -94,7 +94,8 @@ void main() {
 				}
 			}
 			break;
-		case 2: {
+		case 2:
+		{
 			cout << "Выберите полином 1 или 2" << endl;
 			cin >> c;
 			cout << "Введите коэффициент монома" << endl;

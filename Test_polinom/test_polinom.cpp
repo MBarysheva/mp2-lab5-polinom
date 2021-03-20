@@ -59,8 +59,6 @@ TEST(TMonom, can_create_monom)
 TEST(TMonom, can_compare_the_monoms)
 {
 	TMonom m1(1, 1, 1, 1), m2(1, 2, 1, 1);
-	EXPECT_EQ(true, m1 < m2);
-	EXPECT_EQ(true, m2 > m1);
 	m2.y = 1;
 	EXPECT_EQ(true, m1 == m2);
 }

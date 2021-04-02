@@ -210,6 +210,8 @@ public:
 	void InsCurr(T elem);
 	void DelCurr();
 	void DelFirst();
+	T GetCurr();
+	bool Empty();
 	void Reset()
 	{
 		pCurr = pFirst;
@@ -258,7 +260,29 @@ public:
 	}
 
 };
-
+template <class T>
+bool TList<T>::Empty() 
+{
+	if (pStop == pFirst)
+		return true;
+	return false;
+}
+template <class T>
+T TList<T>::GetCurr()
+{
+	if (Empty())
+		throw 0;
+	if (pCurr = pStop)
+		throw 0;
+	pCurr = pFirst->pNext;
+	pPrev = pCurr;
+	for (int i = 0; i < pos; i++)
+	{
+		pPrev = pCurr;
+		pCurr = pCurr->pNext;
+	}
+	return pCurr->val;
+}
 template <class T>
 TList<T>::TList(const TList<T>& list)
 {

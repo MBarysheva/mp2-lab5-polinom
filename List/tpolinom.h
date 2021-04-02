@@ -66,12 +66,12 @@ public:
 
 	//constructor
 	TPolinom() : THeadList<TMonom>() {
-		pHead->val.pz = -1;
+		pHead->val.pz = 0;
 	}
 
 	//constructor for debugging (converts a two-dimensional array into polinomial  )
 	TPolinom(int** arr, int sizep) : THeadList<TMonom>() {          //sizep - number of monomials
-		pHead->val.pz = -1;
+		pHead->val.pz = 0;
 		for (int i = 0; i < sizep; i++) {
 			TMonom mon;
 			mon.coeff = arr[i][0];
@@ -84,7 +84,7 @@ public:
 
 	//copy constructor
 	TPolinom(TPolinom &p) : THeadList<TMonom>() {
-		pHead->val.pz = -1;
+		pHead->val.pz = 0;
 		for (p.Reset(); !p.IsEnd(); p.GoNext()) {
 			TMonom mon = p.pCurr->val;
 			InsMonom(mon);
@@ -148,8 +148,6 @@ public:
 		res *= mon;
 		return res;
 	}
-
-	//Polinomial addition +=
 	void operator+=(TPolinom& q) {
 		TMonom pm, qm, rm;
 		Reset();
@@ -175,27 +173,27 @@ public:
 						else {
 							pCurr->val = rm;
 							q.GoNext();
-							GoNext();
-						}
+							GoNext();}
 					}
 				}
 			}
 		}
 	}
-
-	//Polinomial addition +
 	TPolinom operator+ (TPolinom& pol) {
 		TPolinom res = *this;
 		res += pol;
 		return res;
 	}
-
 	//Output
 	friend std::ostream& operator<<( std::ostream &os, TPolinom &p) {
-		for (p.Reset(); !p.IsNextEnd(); p.GoNext()) {
+		
+		for (p.Reset(); !p.IsNextEnd(); p.GoNext())
+		{
+			
 			std::cout << p.pCurr->val.coeff << "*" << "x^" << p.pCurr->val.px << "y^" << p.pCurr->val.py << "z^" << p.pCurr->val.pz << " + ";//<<  std::endl;
 		}
-		std::cout << p.pCurr->val.coeff << "*" << "x^" << p.pCurr->val.px << "y^"<< p.pCurr->val.py << "z^" << p.pCurr->val.pz << std::endl;
+		std::cout << p.pCurr->val.coeff << "*" << "x^" << p.pCurr->val.px << "y^"<< p.pCurr->val.py << "z^" << p.pCurr->val.pz<< std::endl;
 		return os;
+		
 	}
 };

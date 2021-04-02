@@ -66,6 +66,7 @@ void main() {
 		cin >> f;
 		switch (f) {
 		case 1:
+		{
 			cout << "Выберите полином 1 или 2" << endl;
 			cin >> c;
 			cout << "Введите целую константу" << endl;
@@ -73,7 +74,7 @@ void main() {
 			if (c == 1) {
 				if (a == 0)
 				{
-					cout << "0" <<endl;
+					cout << "0" << endl;
 				}
 				else
 				{
@@ -94,6 +95,7 @@ void main() {
 				}
 			}
 			break;
+		}
 		case 2:
 		{
 			cout << "Выберите полином 1 или 2" << endl;
@@ -132,8 +134,8 @@ void main() {
 			break;
 		}
 		case 4:
-			cout << pol + pol1 << endl;
-			break;
+            cout << pol + pol1 << endl;
+	        break;
 		case 5:
 			cout << "1)" << pol << endl;
 			cout << "2)" << pol1 << endl;
